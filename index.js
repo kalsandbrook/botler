@@ -27,9 +27,13 @@ for (const file of globalCommandFiles) {
 				client.api
 					.applications(app_id)
 					.commands.get()
-					.then(async (response) => {
-						for (const command of await response) {
-							if (!client.commands.has(command.name))
+					.then((response) => {
+						for (const command of response) {
+							if (
+								!globalCommandFiles.find(
+									(file) => file.slice(0, file.length - 3) == command.name
+								)
+							)
 								client.api.applications(app_id).commands(command.id).delete();
 						}
 					});
@@ -59,9 +63,13 @@ for (const file of guildCommandFiles) {
 					.applications(app_id)
 					.guilds(guild_id)
 					.commands.get()
-					.then(async (response) => {
-						for (const command of await response) {
-							if (!client.commands.has(command.name))
+					.then((response) => {
+						for (const command of response) {
+							if (
+								!guildCommandFiles.find(
+									(file) => file.slice(0, file.length - 3) == command.name
+								)
+							)
 								client.api
 									.applications(app_id)
 									.guilds(guild_id)
