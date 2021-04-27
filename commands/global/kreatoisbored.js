@@ -11,8 +11,8 @@ module.exports = {
 				content:
 					(interaction.member?.user.id || interaction.user.id) ==
 					"647480386577760256"
-						? "Oh hey Kreato, still bored?"
-						: "Kreato's bored, go entertain him.",
+						? "Oh hey <@647480386577760256>, still bored?"
+						: "<@647480386577760256>'s bored, go entertain him.",
 			},
 		};
 	},
