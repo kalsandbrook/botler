@@ -17,16 +17,10 @@ module.exports = {
 		],
 	},
 
-	response: (interaction, client) => {
-		if ((interaction.member.permissions & 0x2) != 0x2)
-			return {
-				type: 4,
-				data: {
-					content: "You do not have permission to use this command.",
-					flags: 64,
-				},
-			};
+	guild_only: true,
+	permission: 0x2,
 
+	response: (interaction, client) => {
 		client.guilds.fetch(interaction.guild_id).then((guild) => {
 			guild.members
 				.fetch(

@@ -12,6 +12,8 @@ module.exports = {
 		],
 	},
 
+	guild_only: true,
+
 	response: (interaction) => {
 		return {
 			type: 4,

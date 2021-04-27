@@ -100,12 +100,44 @@ client.ws.on("INTERACTION_CREATE", async (interaction) => {
 			case 2:
 				if (!client.commands.has(interaction.data?.name)) break;
 
+				const command = client.commands.get(interaction.data?.name);
+
+				if (command.guild_only)
+					if (!interaction.member)
+						return client.api
+							.interactions(interaction.id, interaction.token)
+							.callback.post({
+								data: {
+									type: 4,
+									data: {
+										content:
+											"You cannot use a guild only command in DM channel.",
+										flags: 64,
+									},
+								},
+							});
+
+				if (command.permission)
+					if (
+						(interaction.member.permissions & command.permission) !=
+						command.permission
+					)
+						return client.api
+							.interactions(interaction.id, interaction.token)
+							.callback.post({
+								data: {
+									type: 4,
+									data: {
+										content: "You do not have permission to use this command.",
+										flags: 64,
+									},
+								},
+							});
+
 				client.api
 					.interactions(interaction.id, interaction.token)
 					.callback.post({
-						data: client.commands
-							.get(interaction.data?.name)
-							.response(interaction, client),
+						data: command.response(interaction, client),
 					});
 				break;
 			case 3:
