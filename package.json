@@ -1,5 +1,5 @@
 {
-	"name": "slashobot",
+	"name": "botler",
 	"version": "0.8.0",
 	"description": "A Discord bot that utilizes slash commands to do pretty much anything you could possibly need a bot for.",
 	"main": "index.js",
@@ -9,15 +9,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/v-briese/slashobot.git"
+		"url": "git+https://github.com/v-briese/botler.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "GPL-3.0",
 	"bugs": {
-		"url": "https://github.com/v-briese/slashobot/issues"
+		"url": "https://github.com/v-briese/botler/issues"
 	},
-	"homepage": "https://github.com/v-briese/slashobot#readme",
+	"homepage": "https://github.com/v-briese/botler#readme",
 	"dependencies": {
 		"discord.js": "^12.5.3",
 		"dotenv": "^8.2.0",

@@ -39,13 +39,13 @@ module.exports = {
 						content: "",
 						embeds: [
 							{
-								title: `Slashobot v${version}`,
+								title: `Botler v${version}`,
 								description: description,
 								url: github,
 								color: Constants.Colors.BLUE,
 								thumbnail: {
 									url:
-										"https://raw.githubusercontent.com/v-briese/slashobot/main/assets/avatar.png",
+										"https://raw.githubusercontent.com/v-briese/botler/main/assets/avatar.png",
 								},
 								author: {
 									name: `Made by ${user.username}#${user.discriminator}`,
