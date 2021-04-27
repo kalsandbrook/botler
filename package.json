@@ -1,10 +1,11 @@
 {
 	"name": "slashobot",
-	"version": "0.6.1",
+	"version": "0.7.0",
 	"description": "A Discord bot that utilizes slash commands to do pretty much anything you could possibly need a bot for.",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"debug": "node ."
 	},
 	"repository": {
 		"type": "git",
