@@ -84,7 +84,7 @@ module.exports = {
 						.then((member) => {
 							require("node-fetch")(
 								`https://discord.com/api/v8/webhooks/${
-									require("../config.json").app_id
+									require("../../config.json").app_id
 								}/${interaction.token}/messages/@original`,
 								{
 									method: "patch",

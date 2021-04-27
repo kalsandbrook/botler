@@ -7,7 +7,11 @@ module.exports = {
 	},
 
 	response: (interaction, client) => {
-		const { app_id, developer_id, support_server } = require("../config.json");
+		const {
+			app_id,
+			developer_id,
+			support_server,
+		} = require("../../config.json");
 
 		client.users.fetch(developer_id).then((user) => {
 			const {
@@ -15,7 +19,7 @@ module.exports = {
 				description,
 				repository: { url },
 				dependencies,
-			} = require("../package.json");
+			} = require("../../package.json");
 			const os = require("os");
 
 			const github = url.slice(4);
@@ -96,6 +100,11 @@ module.exports = {
 									{
 										name: "Users",
 										value: client.users.cache.array().length,
+										inline: true,
+									},
+									{
+										name: "Commands",
+										value: client.commands.size,
 										inline: true,
 									},
 									{ name: "\u200B\nLinks", value: "\u200B" },

@@ -6,14 +6,44 @@ const { app_id, guild_id } = require("./config.json");
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
-const commandFiles = fs
-	.readdirSync("./commands")
+const globalCommandFiles = fs
+	.readdirSync("./commands/global")
 	.filter((file) => file.endsWith(".js"));
 
-let commandsRegistered = 0;
+let globalCommandsRegistered = 0;
 
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
+for (const file of globalCommandFiles) {
+	const command = require(`./commands/global/${file}`);
+
+	client.api
+		.applications(app_id)
+		.commands.post({ data: command.command })
+		.then(() => {
+			client.commands.set(command.command.name, command);
+
+			globalCommandsRegistered += 1;
+
+			if (globalCommandsRegistered >= globalCommandFiles.length)
+				client.api
+					.applications(app_id)
+					.commands.get()
+					.then(async (response) => {
+						for (const command of await response) {
+							if (!client.commands.has(command.name))
+								client.api.applications(app_id).commands(command.id).delete();
+						}
+					});
+		});
+}
+
+const guildCommandFiles = fs
+	.readdirSync("./commands/guild")
+	.filter((file) => file.endsWith(".js"));
+
+let guildCommandsRegistered = 0;
+
+for (const file of guildCommandFiles) {
+	const command = require(`./commands/guild/${file}`);
 
 	client.api
 		.applications(app_id)
@@ -22,9 +52,9 @@ for (const file of commandFiles) {
 		.then(() => {
 			client.commands.set(command.command.name, command);
 
-			commandsRegistered += 1;
+			guildCommandsRegistered += 1;
 
-			if (commandsRegistered >= commandFiles.length)
+			if (guildCommandsRegistered >= guildCommandFiles.length)
 				client.api
 					.applications(app_id)
 					.guilds(guild_id)
