@@ -9,7 +9,8 @@ module.exports = {
 			type: 4,
 			data: {
 				content:
-					interaction.member.user.id == "647480386577760256"
+					(interaction.member?.user.id || interaction.user.id) ==
+					"647480386577760256"
 						? "Oh hey Kreato, still bored?"
 						: "Kreato's bored, go entertain him.",
 			},
