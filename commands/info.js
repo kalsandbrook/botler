@@ -39,6 +39,10 @@ module.exports = {
 								description: description,
 								url: github,
 								color: Constants.Colors.BLUE,
+								thumbnail: {
+									url:
+										"https://raw.githubusercontent.com/v-briese/slashobot/main/assets/avatar.png",
+								},
 								author: {
 									name: `Made by ${user.username}#${user.discriminator}`,
 									url: `https://discord.com/users/${developer_id}`,
