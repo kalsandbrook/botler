@@ -44,10 +44,8 @@ for (const file of commandFiles) {
 
 client.once("ready", () => {
 	client.user.setActivity({
-		type: "WATCHING",
-		name: `${client.users.cache.array().length} users in ${
-			client.guilds.cache.array().length
-		} servers.`,
+		type: "PLAYING",
+		name: `at v${require("./package.json").version}`,
 	});
 
 	console.log("Ready!");
