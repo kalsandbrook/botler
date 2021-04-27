@@ -54,25 +54,42 @@ client.once("ready", () => {
 client.ws.on("INTERACTION_CREATE", async (interaction) => {
 	console.log("[INTERACTION]:", interaction);
 
-	switch (interaction.type) {
-		case 2:
-			if (!client.commands.has(interaction.data?.name)) break;
+	try {
+		switch (interaction.type) {
+			case 2:
+				if (!client.commands.has(interaction.data?.name)) break;
 
-			client.api.interactions(interaction.id, interaction.token).callback.post({
-				data: client.commands
-					.get(interaction.data?.name)
-					.response(interaction, client),
-			});
-			break;
-		case 3:
-			if (!client.commands.has(interaction.message?.interaction?.name)) break;
+				client.api
+					.interactions(interaction.id, interaction.token)
+					.callback.post({
+						data: client.commands
+							.get(interaction.data?.name)
+							.response(interaction, client),
+					});
+				break;
+			case 3:
+				if (!client.commands.has(interaction.message?.interaction?.name)) break;
 
-			client.api.interactions(interaction.id, interaction.token).callback.post({
-				data: client.commands
-					.get(interaction.message?.interaction?.name)
-					.buttonResponse(interaction, client),
-			});
-			break;
+				client.api
+					.interactions(interaction.id, interaction.token)
+					.callback.post({
+						data: client.commands
+							.get(interaction.message?.interaction?.name)
+							.buttonResponse(interaction, client),
+					});
+				break;
+		}
+	} catch (error) {
+		console.error("[ERROR]: ", error);
+
+		client.api.interactions(interaction.id, interaction.token).callback.post({
+			data: {
+				type: 4,
+				data: {
+					content: `An error has occured! It reads as follows:\n\`\`\`js\n${error}\n\`\`\``,
+				},
+			},
+		});
 	}
 });
 
