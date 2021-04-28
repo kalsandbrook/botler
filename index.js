@@ -55,7 +55,14 @@ client.once("ready", () => {
 			.applications(app_id)
 			.guilds(guild_id)
 			.commands.post({ data: command.command })
-			.then(() => {
+			.then((returnedCommand) => {
+				if (command.permissions)
+					client.api
+						.applications(app_id)
+						.guilds(guild_id)
+						.commands(returnedCommand.id)
+						.permissions.put({ data: { permissions: command.permissions } });
+
 				client.commands.set(command.command.name, command);
 
 				guildCommandsRegistered += 1;
