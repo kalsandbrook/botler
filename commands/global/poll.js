@@ -28,6 +28,7 @@ module.exports = {
 	},
 
 	guild_only: true,
+	permission: 0x20000,
 
 	response: (interaction, client) => {
 		const channelOption = interaction.data.options.find(
@@ -40,7 +41,6 @@ module.exports = {
 				.then((channel) => {
 					channel
 						.send({
-							content: "",
 							embed: {
 								title: "Poll",
 								author: {

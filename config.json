@@ -2,5 +2,6 @@
 	"app_id": "836407973575917608",
 	"guild_id": "793640293953306665",
 	"developer_id": "441384103946878987",
-	"support_server": "https://discord.gg/fssWDHY5Kb"
+	"support_server": "https://discord.gg/fssWDHY5Kb",
+	"bot_invite": "https://discord.com/api/oauth2/authorize?client_id=836407973575917608&permissions=8&scope=bot%20applications.commands"
 }

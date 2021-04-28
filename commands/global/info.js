@@ -8,9 +8,9 @@ module.exports = {
 
 	response: (interaction, client) => {
 		const {
-			app_id,
 			developer_id,
 			support_server,
+			bot_invite,
 		} = require("../../config.json");
 
 		client.users.fetch(developer_id).then((user) => {
@@ -105,7 +105,7 @@ module.exports = {
 							{ name: "\u200B\nLinks", value: "\u200B" },
 							{
 								name: "Invite",
-								value: "Nuh uh, not yet!",
+								value: `[Invite](${bot_invite})`,
 								inline: true,
 							},
 							{
@@ -115,7 +115,7 @@ module.exports = {
 							},
 							{
 								name: "Github",
-								value: `[Click Here](${github})`,
+								value: `[Contribute](${github})`,
 								inline: true,
 							},
 							{
