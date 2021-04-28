@@ -39,23 +39,11 @@ module.exports = {
 			.fetch(channelOption || interaction.channel_id)
 			.then((channel) => {
 				channel.send(messageOption).then(() => {
-					require("node-fetch")(
-						`https://discord.com/api/v8/webhooks/${
-							require("../../config.json").app_id
-						}/${interaction.token}/messages/@original`,
-						{
-							method: "patch",
-							body: JSON.stringify({
-								content: `Sent the message "${messageOption}"${
-									channelOption ? `to <#${channelOption}>` : ""
-								}.`,
-							}),
-							headers: {
-								Authorization: "Bot " + process.env.BOT_TOKEN,
-								"Content-Type": "application/json",
-							},
-						}
-					);
+					require("../../util").editInteractionResponse(interaction.token, {
+						content: `Sent the message "${messageOption}"${
+							channelOption ? `to <#${channelOption}>` : ""
+						}.`,
+					});
 				});
 			});
 

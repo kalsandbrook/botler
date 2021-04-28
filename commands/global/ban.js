@@ -76,29 +76,17 @@ module.exports = {
 							reason: reason || undefined,
 						})
 						.then((member) => {
-							require("node-fetch")(
-								`https://discord.com/api/v8/webhooks/${
-									require("../../config.json").app_id
-								}/${interaction.token}/messages/@original`,
-								{
-									method: "patch",
-									body: JSON.stringify({
-										content: `Banned ${member.user.username}#${
-											member.user.discriminator
-										}${
-											days
-												? ` and deleted messages sent by the user from up to ${days} day${
-														days != 1 ? "s" : ""
-												  } ago`
-												: ""
-										}${reason ? ` for "${reason}"` : ""}.`,
-									}),
-									headers: {
-										Authorization: "Bot " + process.env.BOT_TOKEN,
-										"Content-Type": "application/json",
-									},
-								}
-							);
+							require("../../util").editInteractionResponse(interaction.token, {
+								content: `Banned ${member.user.username}#${
+									member.user.discriminator
+								}${
+									days
+										? ` and deleted messages sent by the user from up to ${days} day${
+												days != 1 ? "s" : ""
+										  } ago`
+										: ""
+								}${reason ? ` for "${reason}"` : ""}.`,
+							});
 						});
 				});
 		});

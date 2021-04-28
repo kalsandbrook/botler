@@ -33,23 +33,11 @@ module.exports = {
 					)?.value;
 
 					member.kick(reason || undefined).then((member) => {
-						require("node-fetch")(
-							`https://discord.com/api/v8/webhooks/${
-								require("../../config.json").app_id
-							}/${interaction.token}/messages/@original`,
-							{
-								method: "patch",
-								body: JSON.stringify({
-									content: `Kicked ${member.user.username}#${
-										member.user.discriminator
-									}${reason ? ` for "${reason}"` : ""}.`,
-								}),
-								headers: {
-									Authorization: "Bot " + process.env.BOT_TOKEN,
-									"Content-Type": "application/json",
-								},
-							}
-						);
+						require("../../util").editInteractionResponse(interaction.token, {
+							content: `Kicked ${member.user.username}#${
+								member.user.discriminator
+							}${reason ? ` for "${reason}"` : ""}.`,
+						});
 					});
 				});
 		});

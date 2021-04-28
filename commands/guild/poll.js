@@ -68,21 +68,12 @@ module.exports = {
 						.then((message) => {
 							message.react("👍").then(() => {
 								message.react("👎").then(() => {
-									require("node-fetch")(
-										`https://discord.com/api/v8/webhooks/${
-											require("../../config.json").app_id
-										}/${interaction.token}/messages/@original`,
+									require("../../util").editInteractionResponse(
+										interaction.token,
 										{
-											method: "patch",
-											body: JSON.stringify({
-												content: `Poll sent${
-													channelOption ? ` to <#${channelOption}>` : ""
-												}.`,
-											}),
-											headers: {
-												Authorization: "Bot " + process.env.BOT_TOKEN,
-												"Content-Type": "application/json",
-											},
+											content: `Poll sent${
+												channelOption ? ` to <#${channelOption}>` : ""
+											}.`,
 										}
 									);
 								});
