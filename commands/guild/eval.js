@@ -33,7 +33,7 @@ module.exports = {
 			console.log("[ERROR]: ", error);
 		}
 
-		if (!output?.then())
+		if (!output?.then)
 			return {
 				type: 4,
 				data: {
