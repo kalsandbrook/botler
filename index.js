@@ -1,9 +1,11 @@
 require("dotenv").config();
 const fs = require("fs");
 const Discord = require("discord.js");
+const NekoClient = require("nekos.life");
 const { app_id, guild_id } = require("./config.json");
 
 const client = new Discord.Client();
+const neko = new NekoClient();
 client.commands = new Discord.Collection();
 
 client.once("ready", () => {
@@ -144,7 +146,7 @@ client.ws.on("INTERACTION_CREATE", async (interaction) => {
 				client.api
 					.interactions(interaction.id, interaction.token)
 					.callback.post({
-						data: command.response(interaction, client),
+						data: command.response(interaction, client, neko),
 					});
 				break;
 			case 3:
@@ -155,7 +157,7 @@ client.ws.on("INTERACTION_CREATE", async (interaction) => {
 					.callback.post({
 						data: client.commands
 							.get(interaction.message?.interaction?.name)
-							.buttonResponse(interaction, client),
+							.buttonResponse(interaction, client, neko),
 					});
 				break;
 		}
