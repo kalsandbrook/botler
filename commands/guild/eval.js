@@ -22,20 +22,25 @@ module.exports = {
 	],
 
 	response: (interaction, client) => {
-		const input = interaction.data.options[0].value;
-		let output;
+		const { editInteractionResponse } = require("../../util");
 
-		try {
-			output = eval(interaction.data.options[0].value);
-		} catch (error) {
-			console.log("[ERROR]: ", error);
-			output = error;
-		}
+		const input = interaction.data.options[0].value;
+
+		eval(input)
+			.then((output) => {
+				editInteractionResponse(interaction.token, {
+					content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
+				});
+			})
+			.catch((error) => {
+				editInteractionResponse(interaction.token, {
+					content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nError:\n\`\`\`js\n${error}\n\`\`\``,
+				});
+			});
 
 		return {
-			type: 4,
+			type: 5,
 			data: {
-				content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
 				flags: 64,
 			},
 		};
