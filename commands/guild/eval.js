@@ -22,19 +22,20 @@ module.exports = {
 	],
 
 	response: (interaction, client) => {
-		let result;
+		const input = interaction.data.options[0].value;
+		let output;
 
 		try {
-			result = eval(interaction.data.options[0].value);
+			output = eval(interaction.data.options[0].value);
 		} catch (error) {
 			console.log("[ERROR]: ", error);
-			result = error;
+			output = error;
 		}
 
 		return {
 			type: 4,
 			data: {
-				content: `Execution complete. The results are as follows:\n\`\`\`js\n${result}\n\`\`\``,
+				content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
 				flags: 64,
 			},
 		};
