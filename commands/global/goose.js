@@ -1,7 +1,7 @@
 module.exports = {
 	command: {
 		name: "goose",
-		description: "Am goose, honk honk!",
+		description: "Honk honk, am goose!",
 	},
 
 	response: (interaction, _client, neko) => {
