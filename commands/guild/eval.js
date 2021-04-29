@@ -25,8 +25,24 @@ module.exports = {
 		const { editInteractionResponse } = require("../../util");
 
 		const input = interaction.data.options[0].value;
+		let output;
 
-		eval(input)
+		try {
+			output = eval(input);
+		} catch (error) {
+			console.log("[ERROR]: ", error);
+		}
+
+		if (!output?.then())
+			return {
+				type: 4,
+				data: {
+					content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
+					flags: 64,
+				},
+			};
+
+		output
 			.then((output) => {
 				editInteractionResponse(interaction.token, {
 					content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
