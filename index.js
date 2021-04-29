@@ -141,21 +141,6 @@ client.ws.on("INTERACTION_CREATE", async (interaction) => {
 								},
 							});
 
-				if (
-					(interaction.member?.user.id || interaction.user?.id) ==
-					"795444538453393429"
-				)
-					return client.api
-						.interactions(interaction.id, interaction.token)
-						.callback.post({
-							data: {
-								type: 4,
-								data: {
-									content: "Hah nope",
-								},
-							},
-						});
-
 				client.api
 					.interactions(interaction.id, interaction.token)
 					.callback.post({
