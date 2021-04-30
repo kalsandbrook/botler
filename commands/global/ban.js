@@ -76,7 +76,7 @@ module.exports = {
 							reason: reason || undefined,
 						})
 						.then((member) => {
-							require("../../util").editInteractionResponse(interaction.token, {
+							require("../../util/editInteractionResponse")(interaction.token, {
 								content: `Banned ${member.user.username}#${
 									member.user.discriminator
 								}${

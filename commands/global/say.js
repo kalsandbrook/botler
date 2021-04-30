@@ -39,7 +39,7 @@ module.exports = {
 			.fetch(channelOption || interaction.channel_id)
 			.then((channel) => {
 				channel.send(messageOption).then(() => {
-					require("../../util").editInteractionResponse(interaction.token, {
+					require("../../util/editInteractionResponse")(interaction.token, {
 						content: `Sent the message "${messageOption}"${
 							channelOption ? `to <#${channelOption}>` : ""
 						}.`,

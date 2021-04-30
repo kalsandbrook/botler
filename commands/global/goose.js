@@ -6,7 +6,7 @@ module.exports = {
 
 	response: (interaction, _client, neko) => {
 		neko.sfw.goose().then((goose) => {
-			require("../../util").editInteractionResponse(interaction.token, {
+			require("../../util/editInteractionResponse")(interaction.token, {
 				embeds: [
 					{
 						title: "/goose",

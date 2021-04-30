@@ -31,7 +31,7 @@ module.exports = {
 
 			const totalSeconds = (client.uptime / 1000) % 3600;
 
-			require("../../util").editInteractionResponse(interaction.token, {
+			require("../../util/editInteractionResponse")(interaction.token, {
 				embeds: [
 					{
 						title: `Botler v${version}`,

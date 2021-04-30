@@ -68,7 +68,7 @@ module.exports = {
 						.then((message) => {
 							message.react("👍").then(() => {
 								message.react("👎").then(() => {
-									require("../../util").editInteractionResponse(
+									require("../../util/editInteractionResponse")(
 										interaction.token,
 										{
 											content: `Poll sent${
