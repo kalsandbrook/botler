@@ -1,5 +1,5 @@
 module.exports = {
-	register: (client) => {
+	register: (client, db) => {
 		const NekoClient = require("nekos.life");
 		const neko = new NekoClient();
 
@@ -37,7 +37,7 @@ module.exports = {
 						client.api
 							.interactions(interaction.id, interaction.token)
 							.callback.post({
-								data: command.response(interaction, client, neko),
+								data: command.response(interaction, client, neko, db),
 							});
 						break;
 				}

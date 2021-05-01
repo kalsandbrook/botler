@@ -21,38 +21,15 @@ module.exports = {
 		},
 	],
 
-	response: (interaction, client) => {
-		const { editInteractionResponse } = require("../../util");
-
+	response: (interaction, client, neko, db) => {
 		const input = interaction.data.options[0].value;
-		let output;
+		let output = eval(input);
 
-		try {
-			output = eval(input);
-		} catch (error) {
-			console.log("[ERROR]: ", error);
-		}
+		if (typeof output != "string") output = require("util").inspect(output);
 
-		if (!output?.then)
-			return {
-				type: 4,
-				data: {
-					content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
-					flags: 64,
-				},
-			};
-
-		output
-			.then((output) => {
-				editInteractionResponse(interaction.token, {
-					content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
-				});
-			})
-			.catch((error) => {
-				editInteractionResponse(interaction.token, {
-					content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nError:\n\`\`\`js\n${error}\n\`\`\``,
-				});
-			});
+		require("../../util/editInteractionResponse")(interaction.token, {
+			content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
+		});
 
 		return {
 			type: 5,

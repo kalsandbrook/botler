@@ -1,11 +1,23 @@
 require("dotenv").config();
 const Discord = require("discord.js");
+const admin = require("firebase-admin");
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
+// Initialize Firebase
+
+admin.initializeApp({
+	credential: admin.credential.cert(
+		JSON.parse(process.env.FIREBASE_CREDENTIALS)
+	),
+});
+const db = admin.firestore();
+
+// Register Commands & Services
+
 require("./commands").register(client);
-require("./services").register(client);
+require("./services").register(client, db);
 
 // Set Activity
 

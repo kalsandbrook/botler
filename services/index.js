@@ -1,5 +1,5 @@
 module.exports = {
-	register: (client) => {
-		require("./interactionCreate").register(client);
+	register: (client, db) => {
+		require("./interactionCreate").register(client, db);
 	},
 };
