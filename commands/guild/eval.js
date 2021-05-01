@@ -27,8 +27,15 @@ module.exports = {
 
 		if (typeof output != "string") output = require("util").inspect(output);
 
+		let messageContent = `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``;
+
+		if (messageContent.length > 2000) {
+			console.log("[OUTPUT]: ", output);
+			messageContent = `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n2000 character limit exceeded, check console.`;
+		}
+
 		require("../../util/editInteractionResponse")(interaction.token, {
-			content: `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``,
+			content: messageContent,
 		});
 
 		return {
