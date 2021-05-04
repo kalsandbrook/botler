@@ -6,7 +6,7 @@ module.exports = {
 		// Respond to Interactions
 
 		client.ws.on("INTERACTION_CREATE", async (interaction) => {
-			console.log("[INTERACTION]: ", interaction);
+			console.log("[INTERACTION]:", interaction);
 
 			try {
 				switch (interaction.type) {
@@ -15,24 +15,38 @@ module.exports = {
 
 						const command = client.commands.get(interaction.data?.name);
 
-						if (command.permission)
-							if (
-								interaction?.member?.permissions &&
-								(interaction.member.permissions & command.permission) !=
-									command.permission
-							)
-								return client.api
-									.interactions(interaction.id, interaction.token)
-									.callback.post({
+						if (command.guild_only && !interaction.guild_id)
+							return client.api
+								.interactions(interaction.id, interaction.token)
+								.callback.post({
+									data: {
+										type: 4,
 										data: {
-											type: 4,
-											data: {
-												content:
-													"You do not have permission to use this command.",
-												flags: 64,
-											},
+											content:
+												"Cannot execute guild only command in DM channel.",
+											flags: 64,
 										},
-									});
+									},
+								});
+
+						if (
+							command.permission &&
+							interaction?.member?.permissions &&
+							(interaction.member.permissions & command.permission) !=
+								command.permission
+						)
+							return client.api
+								.interactions(interaction.id, interaction.token)
+								.callback.post({
+									data: {
+										type: 4,
+										data: {
+											content:
+												"You do not have permission to use this command.",
+											flags: 64,
+										},
+									},
+								});
 
 						client.api
 							.interactions(interaction.id, interaction.token)

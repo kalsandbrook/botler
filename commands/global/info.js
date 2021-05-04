@@ -29,7 +29,7 @@ module.exports = {
 			if (memory >= 1024) memoryUsage = `${(memory / 1024).toFixed(2)}GB`;
 			else memoryUsage = `${memory.toFixed(2)}MB`;
 
-			const totalSeconds = (client.uptime / 1000) % 3600;
+			const uptime = new Date(client.uptime);
 
 			require("../../util/editInteractionResponse")(interaction.token, {
 				embeds: [
@@ -69,11 +69,9 @@ module.exports = {
 							},
 							{
 								name: "Uptime",
-								value: `${Math.floor(totalSeconds / 86400)}d, ${Math.floor(
-									totalSeconds / 3600
-								)}h, ${Math.floor(totalSeconds / 60)}m, ${Math.round(
-									totalSeconds % 60
-								)}s`,
+								value: `${
+									uptime.getDate() - 1
+								}d ${uptime.getHours()}h ${uptime.getMinutes()}m ${uptime.getSeconds()}s`,
 								inline: true,
 							},
 							{
