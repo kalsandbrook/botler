@@ -33,7 +33,7 @@ module.exports = {
 					)?.value;
 
 					member.kick(reason || undefined).then((member) => {
-						require("../../util/editInteractionResponse")(interaction.token, {
+						require("../../util").editInteractionResponse(interaction.token, {
 							content: `Kicked ${member.user.username}#${
 								member.user.discriminator
 							}${reason ? ` for "${reason}"` : ""}.`,

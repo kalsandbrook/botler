@@ -15,7 +15,7 @@ module.exports = {
 
 	response: (interaction, _client, neko) => {
 		neko.sfw.hug().then((hug) => {
-			require("../../util/editInteractionResponse")(interaction.token, {
+			require("../../util").editInteractionResponse(interaction.token, {
 				embeds: [
 					{
 						title: "/hug",

@@ -1,7 +1,7 @@
 module.exports = {
 	command: {
-		name: "slap",
-		description: "Slaps somone.",
+		name: "poke",
+		description: "Pokes somone.",
 		options: [
 			{
 				type: 6,
@@ -13,21 +13,21 @@ module.exports = {
 	},
 
 	response: (interaction, _client, neko) => {
-		neko.sfw.slap().then((slap) => {
+		neko.sfw.poke().then((poke) => {
 			require("../../util").editInteractionResponse(interaction.token, {
 				embeds: [
 					{
-						title: "/slap",
+						title: "/poke",
 						description: `<@!${
 							interaction.member?.user.id || interaction.user?.id
-						}> slapped <@!${interaction.data.options[0].value}>!`,
+						}> poked <@!${interaction.data.options[0].value}>!`,
 						color: require("discord.js").Constants.Colors.PURPLE,
 						footer: {
 							text: "Provided by Nekos.life",
 							icon_url: "https://avatars.githubusercontent.com/u/34457007",
 						},
 						image: {
-							url: slap.url,
+							url: poke.url,
 						},
 					},
 				],

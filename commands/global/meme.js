@@ -21,7 +21,7 @@ module.exports = {
 					client.channels.fetch(interaction.channel_id).then((channel) => {
 						if (!channel.nsfw && redditPost.over_18) return fetchMeme();
 
-						require("../../util/editInteractionResponse")(interaction.token, {
+						require("../../util").editInteractionResponse(interaction.token, {
 							embeds: [
 								{
 									title: redditPost.subreddit_name_prefixed,

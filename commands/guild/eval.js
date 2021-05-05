@@ -34,7 +34,7 @@ module.exports = {
 			messageContent = `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n2000 character limit exceeded, check console.`;
 		}
 
-		require("../../util/editInteractionResponse")(interaction.token, {
+		require("../../util").editInteractionResponse(interaction.token, {
 			content: messageContent,
 		});
 

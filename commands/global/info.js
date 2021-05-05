@@ -31,7 +31,7 @@ module.exports = {
 
 			const uptime = new Date(client.uptime);
 
-			require("../../util/editInteractionResponse")(interaction.token, {
+			require("../../util").editInteractionResponse(interaction.token, {
 				embeds: [
 					{
 						title: `Botler v${version}`,
