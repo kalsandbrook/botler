@@ -34,3 +34,7 @@ client.once("ready", () => {
 // Login
 
 client.login(process.env.BOT_TOKEN);
+
+module.exports = {
+	client,
+};
