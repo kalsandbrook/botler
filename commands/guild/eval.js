@@ -23,9 +23,17 @@ module.exports = {
 
 	response: (interaction, client, neko, db) => {
 		const input = interaction.data.options[0].value;
-		let output = eval(input);
+		let output;
 
-		if (typeof output != "string") output = require("util").inspect(output);
+		try {
+			output = eval(input);
+
+			if (typeof output != "string") output = require("util").inspect(output);
+		} catch (error) {
+			console.error("[EVAL ERROR]:", error);
+
+			output = error;
+		}
 
 		let messageContent = `Input:\n\`\`\`js\n${input}\n\`\`\`\nOutput:\n\`\`\`js\n${output}\n\`\`\``;
 
