@@ -1,5 +1,5 @@
 module.exports = (token, data) => {
-	require("node-fetch")(
+	return require("node-fetch")(
 		`https://discord.com/api/v8/webhooks/${
 			require("../config.json").app_id
 		}/${token}/messages/@original`,
@@ -7,7 +7,7 @@ module.exports = (token, data) => {
 			method: "patch",
 			body: JSON.stringify(data),
 			headers: {
-				Authorization: "Bot " + process.env.BOT_TOKEN,
+				Authorization: `Bot ${process.env.BOT_TOKEN}`,
 				"Content-Type": "application/json",
 			},
 		}
