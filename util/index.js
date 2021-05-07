@@ -1,3 +1,4 @@
-const editInteractionResponse = require("./editInteractionResponse");
-
-module.exports = { editInteractionResponse };
+module.exports = {
+	editInteractionResponse: require("./editInteractionResponse"),
+	createFollowupMessage: require("./createFollowupMessage"),
+};

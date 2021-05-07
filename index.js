@@ -5,6 +5,10 @@ const admin = require("firebase-admin");
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
+module.exports = {
+	client,
+};
+
 // Initialize Firebase
 
 admin.initializeApp({
@@ -34,7 +38,3 @@ client.once("ready", () => {
 // Login
 
 client.login(process.env.BOT_TOKEN);
-
-module.exports = {
-	client,
-};

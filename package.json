@@ -1,6 +1,6 @@
 {
 	"name": "botler",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"description": "A Discord bot that utilizes slash commands to do pretty much anything you could possibly need a bot for.",
 	"main": "index.js",
 	"scripts": {
@@ -19,6 +19,7 @@
 	},
 	"homepage": "https://github.com/v-briese/botler#readme",
 	"dependencies": {
+		"discord-interactions": "^2.0.2",
 		"discord.js": "^12.5.3",
 		"dotenv": "^8.2.0",
 		"firebase-admin": "^9.7.0",
