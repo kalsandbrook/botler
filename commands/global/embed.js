@@ -104,27 +104,14 @@ module.exports = {
 
 		if (
 			getOption("footer_icon") &&
-			!getOption("footer_icon").includes("https") &&
-			!getOption("footer_icon").includes("http")
+			!getOption("footer_icon").startsWith("http")
 		)
 			return invalidLink("footer_icon");
-		if (
-			getOption("image") &&
-			!getOption("image").includes("https") &&
-			!getOption("image").includes("http")
-		)
+		if (getOption("image") && !getOption("image").startsWith("http"))
 			return invalidLink("image");
-		if (
-			getOption("thumbnail") &&
-			!getOption("thumbnail").includes("https") &&
-			!getOption("thumbnail").includes("http")
-		)
+		if (getOption("thumbnail") && !getOption("thumbnail").startsWith("http"))
 			return invalidLink("thumbnail");
-		if (
-			getOption("url") &&
-			!getOption("url").includes("https") &&
-			!getOption("url").includes("http")
-		)
+		if (getOption("url") && !getOption("url").startsWith("http"))
 			return invalidLink("url");
 
 		client.users

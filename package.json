@@ -1,6 +1,6 @@
 {
 	"name": "botler",
-	"version": "1.7.0",
+	"version": "1.7.1",
 	"description": "A Discord bot that utilizes slash commands to do pretty much anything you could possibly need a bot for.",
 	"main": "index.js",
 	"scripts": {
@@ -11,14 +11,19 @@
 		"type": "git",
 		"url": "git+https://github.com/v-briese/botler.git"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"discord",
+		"discord-bot",
+		"discord-js"
+	],
+	"author": "v-briese",
 	"license": "GPL-3.0",
 	"bugs": {
 		"url": "https://github.com/v-briese/botler/issues"
 	},
 	"homepage": "https://github.com/v-briese/botler#readme",
 	"dependencies": {
+		"@discordjs/opus": "^0.5.0",
 		"discord-interactions": "^2.0.2",
 		"discord.js": "^12.5.3",
 		"dotenv": "^8.6.0",
