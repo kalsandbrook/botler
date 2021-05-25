@@ -8,6 +8,7 @@ module.exports = {
 
 	response: (interaction, client) => {
 		const {
+			app_id,
 			developer_id,
 			support_server,
 			bot_invite,
@@ -118,7 +119,7 @@ module.exports = {
 							},
 							{
 								name: "top.gg",
-								value: "You'll have to wait a bit.",
+								value: `[Vote](https://top.gg/bot/${app_id})`,
 								inline: true,
 							},
 						],
